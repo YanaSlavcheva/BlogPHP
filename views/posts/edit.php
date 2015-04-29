@@ -1,4 +1,4 @@
-<h1>Edit Existing Author</h1>
+<h1>Edit Existing Post</h1>
 
 <?php if ($this -> post) { ?>
 <form method="post" action="/posts/edit/<?= $this -> post['post_id'] ?>">

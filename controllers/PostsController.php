@@ -47,12 +47,23 @@ class PostsController extends BaseController {
     }
 
     public function delete($id) {
-        if ($this -> postsModel -> delete($id)) {
-            $this -> addInfoMessage("Post deleted.");
-        } else {
-            $this -> addErrorMessage("Cannot delete post #" . htmlspecialchars($id) . '.');
-            $this -> addErrorMessage("Maybe it is in use.");
+        if ($this -> isPost()) {
+            // Delete the post in the database
+            $title = $_POST['title'];
+            $content = $_POST['content'];
+            if ($this -> postsModel -> delete($id)) {
+                $this -> addInfoMessage("Post deleted.");
+                $this -> redirect("posts");
+            } else {
+                $this -> addErrorMessage("Cannot delete post.");
+            }
         }
-        $this -> redirect("posts");
+
+        // Display delete post form
+        $this -> post = $this -> postsModel -> find($id);
+        if (!$this -> post) {
+            $this -> addErrorMessage("Invalid post.");
+            $this -> redirect("posts");
+        }
     }
 }
