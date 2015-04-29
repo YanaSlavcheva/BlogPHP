@@ -11,8 +11,8 @@
             <td><?= htmlspecialchars($post['post_id']) ?></td>
             <td><?= htmlspecialchars($post['title']) ?></td>
             <td><?= htmlspecialchars($post['content']) ?></td>
-            <td><a href="/posts/edit/<?=$post['id'] ?>">[Edit]</td>
-            <td><a href="/posts/delete/<?=$post['id'] ?>">[Delete]</td>
+            <td><a href="/posts/edit/<?=$post['post_id'] ?>">[Edit]</td>
+            <td><a href="/posts/delete/<?=$post['post_id'] ?>">[Delete]</td>
         </tr>
     <?php endforeach ?>
 </table>

@@ -29,7 +29,8 @@ class PostsController extends BaseController {
         if ($this -> isPost()) {
             // Edit the post in the database
             $title = $_POST['title'];
-            if ($this -> postsModel -> edit($id, $title)) {
+            $content = $_POST['content'];
+            if ($this -> postsModel -> edit($id, $title, $content)) {
                 $this -> addInfoMessage("Post edited.");
                 $this -> redirect("posts");
             } else {

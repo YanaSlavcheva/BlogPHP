@@ -8,7 +8,7 @@ class PostsModel extends BaseModel {
 
     public function find($id) {
         $statement = self::$db -> prepare(
-            "SELECT * FROM posts WHERE id = ?");
+            "SELECT * FROM posts WHERE post_id = ?");
         $statement -> bind_param("i", $id);
         $statement -> execute();
         return $statement -> get_result()->fetch_assoc();
@@ -23,7 +23,7 @@ class PostsModel extends BaseModel {
             "INSERT INTO `posts` SET `title` = ?,`content` = ?");
         $statement -> bind_param("ss", $title, $content);
         $statement -> execute();
-        return $statement->affected_rows > 0;
+        return $statement -> affected_rows > 0;
     }
 
     public function edit($id, $title, $content) {
@@ -32,15 +32,15 @@ class PostsModel extends BaseModel {
         }
 
         $statement = self::$db -> prepare(
-            "UPDATE posts SET title = ?, content = ? WHERE id = ?");
-        $statement -> bind_param("si", $title, $content, $id);
+            "UPDATE posts SET title = ?, content = ? WHERE post_id = ?");
+        $statement -> bind_param("ssi", $title, $content, $id);
         $statement -> execute();
         return $statement -> errno == 0;
     }
 
     public function delete($id) {
         $statement = self::$db -> prepare(
-            "DELETE FROM posts WHERE id = ?");
+            "DELETE FROM posts WHERE post_id = ?");
         $statement -> bind_param("i", $id);
         $statement -> execute();
         return $statement -> affected_rows > 0;
