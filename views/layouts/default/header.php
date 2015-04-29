@@ -11,7 +11,7 @@
         <a href="/"><img src="/content/images/site-logo.png"></a>
         <ul class="menu">
             <li><a href="/">Home</a></li>
-            <li><a href="/authors">Authors</a></li>
+            <li><a href="/posts">Posts</a></li>
             <li><a href="/books">Books</a></li>
         </ul>
     </header>
