@@ -1,9 +1,10 @@
-<h1>List of Authors</h1>
+<h1>List of Posts</h1>
 <table>
     <tr>
         <th>ID</th>
         <th>Title</th>
         <th>Content</th>
+        <th>Tags</th>
         <th colspan="2">Action</th>
     </tr>
     <?php foreach ($this -> posts as $post) : ?>
@@ -11,6 +12,7 @@
             <td><?= htmlspecialchars($post['post_id']) ?></td>
             <td><?= htmlspecialchars($post['title']) ?></td>
             <td><?= htmlspecialchars($post['content']) ?></td>
+            <td><?= htmlspecialchars($post['tags']) ?></td>
             <td><a href="/posts/edit/<?=$post['post_id'] ?>">[Edit]</td>
             <td><a href="/posts/delete/<?=$post['post_id'] ?>">[Delete]</td>
         </tr>
