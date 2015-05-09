@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-
         <title><?php echo htmlspecialchars($this->title) ?></title>
 
         <link href="/content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <script src="/content/bootstrap/js/bootstrap.js"></script>
-
         <link href="/content/styles/styles.css" rel="stylesheet" />
         <script src="/content/scripts/libs/mustache.js-2.0.0/mustache.js"></script>
 
@@ -26,3 +24,5 @@
             </div>
         </header>
         <?php include_once('views/layouts/messages.php'); ?>
+
+        <div class="row wrapper">

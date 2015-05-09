@@ -40,5 +40,3 @@
         </form>
     </article>
 </section>
-
-<?php include_once('views/layouts/default/aside.php'); ?>
