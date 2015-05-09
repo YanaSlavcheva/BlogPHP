@@ -79,7 +79,7 @@ button {
     padding: 10px;
 }
 
-.post-short header {
+.post-short header, .main-part {
     border-bottom: 3px solid lightgray;
 }
 
@@ -100,4 +100,22 @@ button {
 
 .post-short p {
     font-size: 18px;
+}
+
+.post-short span {
+    font-family: "Century Gothic", Arial, sans-serif;
+    padding-left: 10px;
+}
+
+.btn-default {
+    background-color: #F0F0F0;
+}
+
+.row {
+    margin: 10px 0;
+}
+
+.inputs {
+    width: 100%;
+    padding: 5px 10px;
 }

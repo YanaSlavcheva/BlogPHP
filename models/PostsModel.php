@@ -16,7 +16,7 @@ class PostsModel extends BaseModel {
             LEFT JOIN php_blog_system.tags t ON t.tag_id = pt.tag_id
             LEFT JOIN php_blog_system.users u ON u.user_id = p.user_id
             GROUP BY p.post_id
-            ORDER BY p.post_id");
+            ORDER BY p.post_id DESC");
         return $statement -> fetch_all(MYSQLI_ASSOC);
     }
 
