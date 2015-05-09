@@ -24,15 +24,58 @@ class PostsModel extends BaseModel {
         return $statement -> get_result()->fetch_assoc();
     }
 
-    public function create($title, $content) {
+    public function create($title, $content, $tags) {
         if ($title == '' || $content == '') {
             return false;
         }
 
         $statement = self::$db -> prepare(
-            "INSERT INTO `posts` SET `title` = ?,`content` = ?");
+            "INSERT INTO `posts` SET `title` = ?, `content` = ?");
         $statement -> bind_param("ss", $title, $content);
         $statement -> execute();
+
+        // TODO: get post_id (the last created post)
+        $statement = self::$db -> prepare(
+            "SELECT LAST_INSERT_ID()");
+        $statement -> execute();
+        $curr_post_id_array = $statement -> get_result() -> fetch_assoc();
+        $curr_post_id = $curr_post_id_array["LAST_INSERT_ID()"];
+
+        // TODO: split tags
+        $tags_array = explode(', ', $tags);
+
+        // TODO: foreach tag check if exists in db / add to db / get the id
+        foreach ($tags_array as $curr_tag_content) {
+            $statement = self::$db -> prepare(
+                "SELECT tag_id FROM tags WHERE tag_content = ?");
+            $statement -> bind_param("s", $curr_tag_content);
+            $statement -> execute();
+            $curr_tag_id_array = $statement -> get_result()->fetch_assoc();
+            $curr_tag_id = $curr_tag_id_array["tag_id"];
+
+            // TODO: check if tag exists
+            if ($curr_tag_id == null){
+                $statement = self::$db -> prepare(
+                    "INSERT INTO `tags` SET `tag_content` = ?");
+                $statement -> bind_param("s", $curr_tag_content);
+                $statement -> execute();
+
+                // TODO: Get last inserted tag id
+                $statement = self::$db -> prepare(
+                    "SELECT LAST_INSERT_ID()");
+                $statement -> execute();
+                $curr_tag_id_array = $statement -> get_result() -> fetch_assoc();
+                $curr_tag_id = $curr_tag_id_array["LAST_INSERT_ID()"];
+            }
+
+            // TODO: fill posts_tags table with info
+            $statement = self::$db -> prepare(
+                "INSERT INTO `posts_tags` SET `post_id` = ?, `tag_id` = ?");
+            $statement -> bind_param("ss", $curr_post_id, $curr_tag_id);
+            $statement -> execute();
+        }
+        // TODO: end of foreach
+
         return $statement -> affected_rows > 0;
     }
 

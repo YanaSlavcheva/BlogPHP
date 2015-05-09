@@ -16,7 +16,8 @@ class PostsController extends BaseController {
         if ($this -> isPost()) {
             $title = $_POST['title'];
             $content = $_POST['content'];
-            if ($this -> postsModel -> create($title, $content)) {
+            $tags = $_POST['tags'];
+            if ($this -> postsModel -> create($title, $content, $tags)) {
                 $this -> addInfoMessage ("Post created.");
                 $this -> redirect("posts");
             } else {

@@ -5,6 +5,9 @@
     <br/>
     Post content: <input type="text" name="content" />
     <br/>
+    Tags: <input type="text" name="tags" />
+    <br/>
+
     <input type="submit" value="Create">
     <a href="/posts">Cancel</a>
 </form>
