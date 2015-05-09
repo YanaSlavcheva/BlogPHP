@@ -1,0 +1,103 @@
+﻿h1, h2 {
+    margin: 10px;
+}
+
+.header_image {
+    width: 100%;
+}
+
+ul.info-messages {
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+    background: #cfc;
+}
+
+ul.info-messages li {
+    display: block;
+}
+
+ul.error-messages {
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+    background: #fcc;
+}
+
+ul.error-messages li {
+    display: block;
+}
+
+/*newly added*/
+body {
+    font-family: "Century Gothic", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+
+button {
+    /*border-radius: 10px;*/
+    border-style: none;
+    padding:10px;
+    width: 100%;
+}
+
+.btn-danger a {
+    color: white;
+}
+
+.btn-danger a:hover {
+    text-decoration: none;
+}
+
+.blog-header {
+    background-color: black;
+}
+
+.blog-header-text a {
+    color: #5cb85c;
+}
+
+.blog-header-text a:hover {
+    color: gray;
+    text-decoration: none;
+}
+
+.create-button {
+    font-size: x-large;
+}
+
+.wrapper {
+    padding: 10px;
+}
+
+.post-short {
+    border: 5px solid lightgray;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.post-short header {
+    border-bottom: 3px solid lightgray;
+}
+
+.post-short h1 {
+    font-size: 22px;
+    background-color: lightgray;
+    padding: 15px;
+}
+
+.post-short h2 {
+    font-size: 14px;
+}
+
+.post-short header h2 {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.post-short p {
+    font-size: 18px;
+}

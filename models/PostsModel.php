@@ -7,11 +7,15 @@ class PostsModel extends BaseModel {
                 p.post_id,
                 p.title,
                 p.content,
-                GROUP_CONCAT(tag_content ORDER BY tag_content ASC SEPARATOR ', ') AS tags
+                GROUP_CONCAT(tag_content ORDER BY tag_content ASC  SEPARATOR ', ') AS tags,
+                p.created_on,
+                p.visits,
+                CONCAT_WS(' ', u.first_name, u.last_name) AS author
             FROM php_blog_system.posts p
             LEFT JOIN php_blog_system.posts_tags pt ON p.post_id = pt.post_id
             LEFT JOIN php_blog_system.tags t ON t.tag_id = pt.tag_id
-            Group BY p.title, p.post_id
+            LEFT JOIN php_blog_system.users u ON u.user_id = p.user_id
+            GROUP BY p.post_id
             ORDER BY p.post_id");
         return $statement -> fetch_all(MYSQLI_ASSOC);
     }
