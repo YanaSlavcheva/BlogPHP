@@ -36,7 +36,7 @@
         </form>
 
         <div class="col-xs-12 col-md-12 col-lg-12">
-            <form class="form-buttons" action="/posts">
+            <form class="form-buttons" action="/posts/post/<?= $this -> post['post_id'] ?>">
                 <button type="submit" class="btn-default">Cancel</button>
             </form>
         </div>
