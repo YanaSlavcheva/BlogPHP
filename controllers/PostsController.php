@@ -12,6 +12,10 @@ class PostsController extends BaseController {
         $this -> posts = $this -> postsModel -> getAll();
     }
 
+    public function post($id) {
+        $this -> post = $this -> postsModel -> getById($id);
+    }
+
     public function create() {
         if ($this -> isPost()) {
             $title = $_POST['title'];

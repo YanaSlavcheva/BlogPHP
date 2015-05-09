@@ -20,6 +20,27 @@ class PostsModel extends BaseModel {
         return $statement -> fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getById($id) {
+        $statement = self::$db -> prepare(
+            "SELECT
+                p.post_id,
+                p.title,
+                p.content,
+                GROUP_CONCAT(tag_content ORDER BY tag_content ASC  SEPARATOR ', ') AS tags,
+                p.created_on,
+                p.visits,
+                CONCAT_WS(' ', u.first_name, u.last_name) AS author
+            FROM php_blog_system.posts p
+            LEFT JOIN php_blog_system.posts_tags pt ON p.post_id = pt.post_id
+            LEFT JOIN php_blog_system.tags t ON t.tag_id = pt.tag_id
+            LEFT JOIN php_blog_system.users u ON u.user_id = p.user_id
+            WHERE p.post_id = ?
+            GROUP BY p.post_id");
+        $statement -> bind_param("i", $id);
+        $statement -> execute();
+        return $statement -> get_result()->fetch_assoc();
+    }
+
     public function find($id) {
         $statement = self::$db -> prepare(
             "SELECT * FROM posts WHERE post_id = ?");

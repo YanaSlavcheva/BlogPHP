@@ -5,10 +5,12 @@
         </form>
     </div>
 
-    <?php foreach ($this -> posts as $post) : ?>
+    <?php
+
+    foreach ($this -> posts as $post) : ?>
         <article class="col-xs-12 col-md-12 col-lg-12 post-short">
             <header class="col-xs-12 col-md-12 col-lg-12">
-                <h1><?= htmlspecialchars($post['title']) ?></h1>
+                <h1><a href="/posts/post/<?=$post['post_id'] ?>"><?= htmlspecialchars($post['title']) ?></a></h1>
                 <h2>Author: <?= htmlspecialchars($post['author']) ?></h2>
                 <h2 class="glyphicon glyphicon-time"><span><?= htmlspecialchars($post['created_on']) ?></span></h2>
                 <h2 class="glyphicon glyphicon-comment"><span><a href="">Leave A Comment</a></span></h2>
