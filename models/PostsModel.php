@@ -25,7 +25,12 @@ class PostsModel extends BaseModel {
     }
 
     public function create($title, $content, $tags) {
-        if ($title == '' || $content == '') {
+
+        // split tags
+        $tags_array = explode(', ', $tags);
+        $tags_array_no_ghosts = array_values( array_filter($tags_array));
+
+        if ($title == '' || $content == '' || count($tags_array_no_ghosts) <= 0) {
             return false;
         }
 
@@ -34,17 +39,20 @@ class PostsModel extends BaseModel {
         $statement -> bind_param("ss", $title, $content);
         $statement -> execute();
 
-        // TODO: get post_id (the last created post)
+        // get post_id (the last created post)
         $statement = self::$db -> prepare(
             "SELECT LAST_INSERT_ID()");
         $statement -> execute();
         $curr_post_id_array = $statement -> get_result() -> fetch_assoc();
         $curr_post_id = $curr_post_id_array["LAST_INSERT_ID()"];
 
-        // TODO: split tags
-        $tags_array = explode(', ', $tags);
 
-        // TODO: foreach tag check if exists in db / add to db / get the id
+        // TODO: tags must contain only letters, spaces and ,
+        // TODO: validate so you cannot add only ,
+        // TODO: delete from array tags that do not contain letters
+        // TODO: foreach only if there are any tags
+
+        // foreach tag check if exists in db / add to db / get the id
         foreach ($tags_array as $curr_tag_content) {
             $statement = self::$db -> prepare(
                 "SELECT tag_id FROM tags WHERE tag_content = ?");
@@ -53,14 +61,14 @@ class PostsModel extends BaseModel {
             $curr_tag_id_array = $statement -> get_result()->fetch_assoc();
             $curr_tag_id = $curr_tag_id_array["tag_id"];
 
-            // TODO: check if tag exists
+            // check if tag exists
             if ($curr_tag_id == null){
                 $statement = self::$db -> prepare(
                     "INSERT INTO `tags` SET `tag_content` = ?");
                 $statement -> bind_param("s", $curr_tag_content);
                 $statement -> execute();
 
-                // TODO: Get last inserted tag id
+                // get last inserted tag id
                 $statement = self::$db -> prepare(
                     "SELECT LAST_INSERT_ID()");
                 $statement -> execute();
@@ -68,13 +76,13 @@ class PostsModel extends BaseModel {
                 $curr_tag_id = $curr_tag_id_array["LAST_INSERT_ID()"];
             }
 
-            // TODO: fill posts_tags table with info
+            // fill posts_tags table with info
             $statement = self::$db -> prepare(
                 "INSERT INTO `posts_tags` SET `post_id` = ?, `tag_id` = ?");
             $statement -> bind_param("ss", $curr_post_id, $curr_tag_id);
             $statement -> execute();
         }
-        // TODO: end of foreach
+        // end of foreach
 
         return $statement -> affected_rows > 0;
     }
@@ -93,10 +101,10 @@ class PostsModel extends BaseModel {
 
     public function delete($id) {
         $statement = self::$db -> prepare(
-            "DELETE pt, p
-            FROM posts_tags pt
-            INNER JOIN posts p ON pt.post_id = p.post_id
-            WHERE pt.post_id = ?");
+            "DELETE p, pt
+              FROM posts p
+              JOIN posts_tags pt ON pt.post_id = p.post_id
+              WHERE p.post_id = ?");
         $statement -> bind_param("i", $id);
         $statement -> execute();
 

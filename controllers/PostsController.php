@@ -49,6 +49,7 @@ class PostsController extends BaseController {
 
     public function delete($id) {
         if ($this -> isPost()) {
+
             // Delete the post in the database
             $title = $_POST['title'];
             $content = $_POST['content'];
