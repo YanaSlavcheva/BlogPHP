@@ -1,6 +1,6 @@
 <?php
 
-define('DEFAULT_CONTROLLER', 'home');
+define('DEFAULT_CONTROLLER', 'posts');
 define('DEFAULT_ACTION', 'index');
 define('DEFAULT_VIEW', 'index');
 define('DEFAULT_LAYOUT', 'default');

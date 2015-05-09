@@ -49,8 +49,6 @@ class PostsModel extends BaseModel {
 
         // TODO: tags must contain only letters, spaces and ,
         // TODO: validate so you cannot add only ,
-        // TODO: delete from array tags that do not contain letters
-        // TODO: foreach only if there are any tags
 
         // foreach tag check if exists in db / add to db / get the id
         foreach ($tags_array as $curr_tag_content) {
