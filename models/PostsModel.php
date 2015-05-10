@@ -3,22 +3,34 @@
 class PostsModel extends BaseModel {
 
     public function getAll() {
+    $statement = self::$db -> query(
+        "SELECT
+            p.post_id,
+            p.title,
+            p.content,
+            GROUP_CONCAT(tag_content ORDER BY tag_content ASC  SEPARATOR ', ') AS tags,
+            p.created_on,
+            p.visits,
+            CONCAT_WS(' ', u.first_name, u.last_name) AS author
+        FROM php_blog_system.posts p
+        LEFT JOIN php_blog_system.posts_tags pt ON p.post_id = pt.post_id
+        LEFT JOIN php_blog_system.tags t ON t.tag_id = pt.tag_id
+        LEFT JOIN php_blog_system.users u ON u.user_id = p.user_id
+        GROUP BY p.post_id
+        ORDER BY p.post_id DESC");
+    return $statement -> fetch_all(MYSQLI_ASSOC);
+}
+
+    public function getLastPosts() {
         $statement = self::$db -> query(
             "SELECT
                 p.post_id,
                 p.title,
-                p.content,
-                GROUP_CONCAT(tag_content ORDER BY tag_content ASC  SEPARATOR ', ') AS tags,
-                p.created_on,
-                p.visits,
-                CONCAT_WS(' ', u.first_name, u.last_name) AS author
-            FROM php_blog_system.posts p
-            LEFT JOIN php_blog_system.posts_tags pt ON p.post_id = pt.post_id
-            LEFT JOIN php_blog_system.tags t ON t.tag_id = pt.tag_id
-            LEFT JOIN php_blog_system.users u ON u.user_id = p.user_id
-            GROUP BY p.post_id
-            ORDER BY p.post_id DESC");
-        return $statement -> fetch_all(MYSQLI_ASSOC);
+                p.created_on
+            FROM posts p
+            ORDER BY p.created_on DESC
+            LIMIT 3");
+        return $statement -> fetch_all();
     }
 
     public function getById($id) {

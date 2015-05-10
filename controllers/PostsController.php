@@ -12,6 +12,11 @@ class PostsController extends BaseController {
         $this -> posts = $this -> postsModel -> getAll();
     }
 
+    public function getLastPosts() {
+        $this -> posts = $this -> postsModel -> getLastPosts();
+        $this -> renderView(__FUNCTION__, true);
+    }
+
     public function post($id) {
         $this -> post = $this -> postsModel -> getById($id);
         $this -> comments = $this -> postsModel -> getAllCommentsByPostId($id);

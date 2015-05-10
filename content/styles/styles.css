@@ -64,7 +64,7 @@ button {
     margin: 20px;
 }
 
-.blog-header-text a, body > footer {
+.blog-header-text a, body > footer, aside h3, aside h4 {
     color: #5cb85c;
 }
 
