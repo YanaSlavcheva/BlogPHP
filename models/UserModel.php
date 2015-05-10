@@ -7,16 +7,16 @@ class UserModel extends BaseModel {
         return $statement -> fetch_all(MYSQLI_ASSOC);
     }
 
+
     public function register($username, $first_name, $last_name, $password) {
         // check if such user exists
         $statement = self::$db -> prepare("SELECT COUNT(user_id) FROM users WHERE username = ?");
         $statement -> bind_param("s", $username);
         $statement -> execute();
         $result = $statement -> get_result() -> fetch_assoc();
-
         var_dump($result['COUNT(user_id)']);
         if ($result['COUNT(user_id)']){
-          return false;
+            return false;
         }
 
         // validate data
@@ -27,7 +27,23 @@ class UserModel extends BaseModel {
             "INSERT INTO `users` (`username`, `first_name`, `last_name`, `password`) VALUES (?, ?, ?, ?)");
         $register_statement -> bind_param("ssss", $username, $first_name, $last_name, $pass_hash);
         $register_statement -> execute();
-
         return true;
+    }
+
+    public function login($username, $password) {
+        
+        // get user data for this username
+        $statement = self::$db -> prepare("SELECT user_id, username, password FROM users WHERE username = ?");
+        $statement -> bind_param("s", $username);
+        $statement -> execute();
+        $result = $statement -> get_result() -> fetch_assoc();
+
+        var_dump($result);
+//         check if password is correct
+        if (password_verify($password, $result['password'])){
+            return true;
+        }
+
+        return false;
     }
 }

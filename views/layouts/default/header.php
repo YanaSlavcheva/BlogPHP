@@ -17,11 +17,12 @@
                 <a href="/"><img class="header_image" src="/content/images/background.jpg"></a>
             </div>
             <div class="col-xs-12 col-md-6 col-lg-8">
-                <h1 class="blog-header-text"><a href="/posts">Yana Slavcheva's Blog</a></h1>
+                <h1 class="blog-header-text inline-block"><a href="/posts">Yana Slavcheva's Blog</a></h1>
+                <h1 class="blog-header-text inline-block"><a href="/user">About</a></h1>
             </div>
             <div class="col-xs-12 col-md-6 col-lg-4">
-                <h1 class="blog-header-text inline-block"><a href="/user">About</a></h1>
-                <h1 class="blog-header-text inline-block"><a href="/login">Login</a></h1>
+                <h1 class="blog-header-text inline-block"><a href="/user/login">Login</a></h1>
+                <h1 class="blog-header-text inline-block"><a href="/user/register">Register</a></h1>
             </div>
         </header>
         <?php include_once('views/layouts/messages.php'); ?>
