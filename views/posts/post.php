@@ -25,12 +25,35 @@
             <button type="submit" class="btn-default">Delete Post</button>
         </form>
     </div>
+</article>
 
 <!--    TODO: Put comments here-->
-    <?php     if ($this -> comments != null){?>
-        <?php foreach ($this -> comments as $comment) : ?>
-            <p>Author: <?= htmlspecialchars($comment['author']) ?></p>
-            <p>Content: <?= htmlspecialchars($comment['content']) ?></p>
-        <?php endforeach ?>
-    <?php } ?>
-</article>
+<?php     if ($this -> comments != null){?>
+    <?php foreach ($this -> comments as $comment) : ?>
+        <div class="row div">
+            <article class="col-xs-8 col-md-8 col-lg-8 post-short pull-right">
+                <div class="col-xs-12 col-md-12 col-lg-12">
+                    <p><?= htmlspecialchars($comment['content']) ?></p>
+                </div>
+                <footer>
+                    <h2 class="inline-block">Author: <?= htmlspecialchars($comment['author']) ?></h2>
+                    <h2 class="glyphicon glyphicon-time inline-block"><span><?= htmlspecialchars($comment['created_on']) ?></span></h2>
+                </footer>
+
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <form class="form-buttons" action="/comments/edit/<?=$comment['comment_id'] ?>">
+                        <button type="submit" class="btn-default">Edit Comment</button>
+                    </form>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <form class="form-buttons" action="/comments/delete/<?=$comment['comment_id'] ?>">
+                        <button type="submit" class="btn-default">Delete Comment</button>
+                    </form>
+                </div>
+            </article>
+        </div>
+    <?php endforeach ?>
+<?php } ?>
+
+
+

@@ -125,7 +125,7 @@ body > header > div > h1 {
     font-size: 14px;
 }
 
-.post-short header h2 {
+.post-short header h2, .inline-block {
     display: inline-block;
     margin-right: 15px;
 }
@@ -145,4 +145,8 @@ button {
 
 footer {
     padding: 10px 10px 30px 10px;
+}
+
+.div {
+    border: 1px solid white;
 }
