@@ -15,16 +15,18 @@
         <h2 class="glyphicon glyphicon-tags"><span>Tags: <?= htmlspecialchars($this -> post['tags']) ?></span></h2>
     </footer>
 
-    <div class="col-xs-12 col-md-6 col-lg-6">
-        <form class="form-buttons" action="/posts/edit/<?=$this -> post['post_id'] ?>">
-            <button type="submit" class="btn-default">Edit Post</button>
-        </form>
-    </div>
-    <div class="col-xs-12 col-md-6 col-lg-6">
-        <form class="form-buttons" action="/posts/delete/<?=$this -> post['post_id'] ?>">
-            <button type="submit" class="btn-default">Delete Post</button>
-        </form>
-    </div>
+    <?php if($this -> isLoggedIn()) : ?>
+        <div class="col-xs-12 col-md-6 col-lg-6">
+            <form class="form-buttons" action="/posts/edit/<?=$this -> post['post_id'] ?>">
+                <button type="submit" class="btn-default">Edit Post</button>
+            </form>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-6">
+            <form class="form-buttons" action="/posts/delete/<?=$this -> post['post_id'] ?>">
+                <button type="submit" class="btn-default">Delete Post</button>
+            </form>
+        </div>
+    <?php endif ?>
 </article>
 
 <!--    TODO: Put comments here-->
@@ -40,16 +42,18 @@
                     <h2 class="glyphicon glyphicon-time inline-block"><span><?= htmlspecialchars($comment['created_on']) ?></span></h2>
                 </footer>
 
-                <div class="col-xs-12 col-md-6 col-lg-6">
-                    <form class="form-buttons" action="/comments/edit/<?=$comment['comment_id'] ?>">
-                        <button type="submit" class="btn-default">Edit Comment</button>
-                    </form>
-                </div>
-                <div class="col-xs-12 col-md-6 col-lg-6">
-                    <form class="form-buttons" action="/comments/delete/<?=$comment['comment_id'] ?>">
-                        <button type="submit" class="btn-default">Delete Comment</button>
-                    </form>
-                </div>
+                <?php if($this -> isLoggedIn()) : ?>
+                    <div class="col-xs-12 col-md-6 col-lg-6">
+                        <form class="form-buttons" action="/comments/edit/<?=$comment['comment_id'] ?>">
+                            <button type="submit" class="btn-default">Edit Comment</button>
+                        </form>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-6">
+                        <form class="form-buttons" action="/comments/delete/<?=$comment['comment_id'] ?>">
+                            <button type="submit" class="btn-default">Delete Comment</button>
+                        </form>
+                    </div>
+                <?php endif ?>
             </article>
         </div>
     <?php endforeach ?>

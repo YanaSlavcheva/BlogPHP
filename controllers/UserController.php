@@ -81,4 +81,10 @@ class UserController extends BaseController {
 
         $this -> renderView(__FUNCTION__);
     }
+
+    public function logout() {
+        unset ($_SESSION['username']);
+        $this -> addInfoMessage ("Logout Successful.");
+        $this -> redirect("posts");
+    }
 }

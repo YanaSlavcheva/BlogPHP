@@ -1,8 +1,10 @@
-<div class="col-xs-12 col-md-12 col-lg-12">
-    <form action="/posts/create">
-        <button type="submit" class="btn-default  create-button">Create New Post</button>
-    </form>
-</div>
+<?php if($this -> isLoggedIn()) : ?>
+    <div class="col-xs-12 col-md-12 col-lg-12">
+        <form action="/posts/create">
+            <button type="submit" class="btn-default  create-button">Create New Post</button>
+        </form>
+    </div>
+<?php endif ?>
 
 <?php
 foreach ($this -> posts as $post) : ?>
@@ -20,16 +22,19 @@ foreach ($this -> posts as $post) : ?>
             <h2 class="glyphicon glyphicon-flag"><span>Visits: <?= htmlspecialchars($post['visits']) ?></span></h2>
             <h2 class="glyphicon glyphicon-tags"><span>Tags: <?= htmlspecialchars($post['tags']) ?></span></h2>
         </footer>
-        <div class="col-xs-12 col-md-6 col-lg-6">
-            <form class="form-buttons" action="/posts/edit/<?=$post['post_id'] ?>">
-                <button type="submit" class="btn-default">Edit Post</button>
-            </form>
-        </div>
 
-        <div class="col-xs-12 col-md-6 col-lg-6">
-            <form class="form-buttons" action="/posts/delete/<?=$post['post_id'] ?>">
-                <button type="submit" class="btn-default">Delete Post</button>
-            </form>
-        </div>
+        <?php if($this -> isLoggedIn()) : ?>
+            <div class="col-xs-12 col-md-6 col-lg-6">
+                <form class="form-buttons" action="/posts/edit/<?=$post['post_id'] ?>">
+                    <button type="submit" class="btn-default">Edit Post</button>
+                </form>
+            </div>
+
+            <div class="col-xs-12 col-md-6 col-lg-6">
+                <form class="form-buttons" action="/posts/delete/<?=$post['post_id'] ?>">
+                    <button type="submit" class="btn-default">Delete Post</button>
+                </form>
+            </div>
+        <?php endif ?>
     </article>
 <?php endforeach ?>

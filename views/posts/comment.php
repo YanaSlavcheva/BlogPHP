@@ -1,4 +1,3 @@
-<h1>COMMENT IN POST FOLDER</h1>
 <article class="col-xs-12 col-md-12 col-lg-12 post-short">
     <form method="post" action="/posts/comment/<?=$this -> post['post_id'] ?>">
         <div class="main-part">
