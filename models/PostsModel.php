@@ -21,6 +21,13 @@ class PostsModel extends BaseModel {
     }
 
     public function getById($id) {
+        // increase counter for visits
+        $visits_statement = self::$db -> prepare(
+            "UPDATE php_blog_system.posts SET visits = visits + 1 WHERE post_id = ?");
+        $visits_statement -> bind_param("i", $id);
+        $visits_statement -> execute();
+
+        // get post info from database
         $statement = self::$db -> prepare(
             "SELECT
                 p.post_id,
