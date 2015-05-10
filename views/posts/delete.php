@@ -1,4 +1,4 @@
-<section class="col-xs-12 col-md-6 col-lg-8">
+
     <article class="col-xs-12 col-md-12 col-lg-12 post-short">
         <form method="post" action="/posts/delete/<?= $this -> post['post_id'] ?>">
             <div class="main-part">
@@ -33,4 +33,3 @@
             </form>
         </div>
     </article>
-</section>

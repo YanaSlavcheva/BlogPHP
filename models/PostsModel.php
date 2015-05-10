@@ -133,4 +133,26 @@ class PostsModel extends BaseModel {
 
         return $statement -> affected_rows > 0;
     }
+
+//    COMMENTS
+    public function getAllCommentsByPostId($id) {
+        $statement = self::$db -> prepare(
+            "SELECT
+                comment_id,
+                content,
+                post_id,
+                author,
+                created_on
+            FROM php_blog_system.comments
+            WHERE post_id = ?
+            ORDER BY created_on DESC, author ASC");
+        $statement -> bind_param("i", $id);
+        $statement -> execute();
+        $result = $statement -> get_result();
+        while ($data = $result -> fetch_assoc())
+        {
+            $statistic[] = $data;
+        }
+        return $statistic;
+    }
 }

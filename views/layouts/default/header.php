@@ -26,3 +26,4 @@
         <?php include_once('views/layouts/messages.php'); ?>
 
         <div class="row wrapper">
+            <section class="col-xs-12 col-md-6 col-lg-8">

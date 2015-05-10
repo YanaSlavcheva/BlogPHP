@@ -14,6 +14,7 @@ class PostsController extends BaseController {
 
     public function post($id) {
         $this -> post = $this -> postsModel -> getById($id);
+        $this -> comments = $this -> postsModel -> getAllCommentsByPostId($id);
     }
 
     public function create() {

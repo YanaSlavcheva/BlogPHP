@@ -1,4 +1,4 @@
-<section class="col-xs-12 col-md-6 col-lg-8">
+
     <article class="col-xs-12 col-md-12 col-lg-12 post-short">
         <form method="post" action="/posts/create">
             <div class="main-part">
@@ -29,14 +29,16 @@
             </div>
 
             <div class="row">
-                <div class="col-xs-12 col-md-6 col-lg-6">
+                <div class="col-xs-12 col-md-12 col-lg-12">
                     <button type="submit" class="btn-default">Create Post</button>
-                </div>
-
-                <div class="col-xs-12 col-md-6 col-lg-6">
-                    <button class="btn-default"><a href="/posts">Cancel</a></button>
                 </div>
             </div>
         </form>
+
+        <div class="col-xs-12 col-md-12 col-lg-12">
+            <form class="form-buttons" action="/posts">
+                <button type="submit" class="btn-default">Cancel</button>
+            </form>
+        </div>
     </article>
-</section>
+

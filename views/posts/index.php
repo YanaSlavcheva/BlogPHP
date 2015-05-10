@@ -1,4 +1,4 @@
-<section class="col-xs-12 col-md-6 col-lg-8">
+
     <div class="col-xs-12 col-md-12 col-lg-12">
         <form action="/posts/create">
             <button type="submit" class="btn-default  create-button">Create New Post</button>
@@ -6,7 +6,7 @@
     </div>
 
     <?php
-
+    var_dump($this -> posts);
     foreach ($this -> posts as $post) : ?>
         <article class="col-xs-12 col-md-12 col-lg-12 post-short">
             <header class="col-xs-12 col-md-12 col-lg-12">
@@ -37,4 +37,3 @@
 <!--            </div>-->
         </article>
     <?php endforeach ?>
-</section>
