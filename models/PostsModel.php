@@ -124,9 +124,10 @@ class PostsModel extends BaseModel {
 
     public function delete($id) {
         $statement = self::$db -> prepare(
-            "DELETE p, pt
+            "DELETE p, pt, c
               FROM posts p
               JOIN posts_tags pt ON pt.post_id = p.post_id
+              JOIN comments c ON c.post_id = p.post_id
               WHERE p.post_id = ?");
         $statement -> bind_param("i", $id);
         $statement -> execute();

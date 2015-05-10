@@ -118,16 +118,15 @@ class CommentsModel extends BaseModel {
         $statement -> execute();
         return $statement -> errno == 0;
     }
-//
-//    public function delete($id) {
-//        $statement = self::$db -> prepare(
-//            "DELETE p, pt
-//              FROM posts p
-//              JOIN posts_tags pt ON pt.post_id = p.post_id
-//              WHERE p.post_id = ?");
-//        $statement -> bind_param("i", $id);
-//        $statement -> execute();
-//
-//        return $statement -> affected_rows > 0;
-//    }
+
+    public function delete($id) {
+        $statement = self::$db -> prepare(
+            "DELETE
+              FROM comments
+              WHERE comment_id = ?");
+        $statement -> bind_param("i", $id);
+        $statement -> execute();
+
+        return $statement -> affected_rows > 0;
+    }
 }

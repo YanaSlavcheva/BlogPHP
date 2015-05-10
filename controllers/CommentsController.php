@@ -51,25 +51,24 @@ class CommentsController extends BaseController {
         }
     }
 
-//    public function delete($id) {
-//        if ($this -> isPost()) {
-//
-//            // Delete the post in the database
-//            $title = $_POST['title'];
-//            $content = $_POST['content'];
-//            if ($this -> commentsModel -> delete($id)) {
-//                $this -> addInfoMessage("Post deleted.");
-//                $this -> redirect("posts");
-//            } else {
-//                $this -> addErrorMessage("Cannot delete post.");
-//            }
-//        }
-//
-//        // Display delete post form
-//        $this -> comment = $this -> commentsModel -> find($id);
-//        if (!$this -> comment) {
-//            $this -> addErrorMessage("Invalid post.");
-//            $this -> redirect("posts");
-//        }
-//    }
+    public function delete($id) {
+        if ($this -> isPost()) {
+
+            // Delete the comment in the database
+            $post_id = $_POST['post_id'];
+            if ($this -> commentsModel -> delete($id)) {
+                $this -> addInfoMessage("Comment deleted.");
+                $this -> redirect("posts/post/$post_id");
+            } else {
+                $this -> addErrorMessage("Cannot delete comment.");
+            }
+        }
+
+        // Display delete post form
+        $this -> comment = $this -> commentsModel -> find($id);
+        if (!$this -> comment) {
+            $this -> addErrorMessage("Invalid post.");
+            $this -> redirect("posts");
+        }
+    }
 }
