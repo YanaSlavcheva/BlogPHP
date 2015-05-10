@@ -6,6 +6,8 @@ abstract class BaseController {
     protected $layout = DEFAULT_LAYOUT;
     protected $viewBag = [];
     protected $viewRendered = false;
+    protected $user;
+    protected $isLoggedIn;
 
     public function __construct($controller, $action) {
         $this->controller = $controller;
@@ -102,7 +104,7 @@ abstract class BaseController {
 
     protected function authorize() {
         if (! $this->isLoggedIn()) {
-            $this->redirect("users", "login");
+            $this->redirect("user", "login");
         }
     }
 

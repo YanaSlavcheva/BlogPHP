@@ -20,9 +20,18 @@
                 <h1 class="blog-header-text inline-block"><a href="/posts">Yana Slavcheva's Blog</a></h1>
                 <h1 class="blog-header-text inline-block"><a href="/user">About</a></h1>
             </div>
+
             <div class="col-xs-12 col-md-6 col-lg-4">
-                <h1 class="blog-header-text inline-block"><a href="/user/login">Login</a></h1>
-                <h1 class="blog-header-text inline-block"><a href="/user/register">Register</a></h1>
+                <?php if(! $this -> isLoggedIn()) : ?>
+                    <h1 class="blog-header-text inline-block"><a href="/user/login">Login</a></h1>
+                    <h1 class="blog-header-text inline-block"><a href="/user/register">Register</a></h1>
+                <?php endif ?>
+
+                <?php if($this -> isLoggedIn()) : ?>
+                    <h1 class="blog-header-text inline-block"><a href="">Hello, <?php echo $_SESSION['username'] ?></a></h1>
+                    <h1 class="blog-header-text inline-block"><a href="/user/logout">Logout</a></h1>
+                <?php endif ?>
+
             </div>
         </header>
         <?php include_once('views/layouts/messages.php'); ?>
