@@ -16,7 +16,7 @@ class CommentsModel extends BaseModel {
 
         $statement = self::$db -> prepare(
             "UPDATE comments SET content = ? WHERE comment_id = ?");
-        $statement -> bind_param("si", $content, $id);
+        $statement -> bind_param("si", mysql_real_escape_string($content), mysql_real_escape_string($id));
         $statement -> execute();
         return $statement -> errno == 0;
     }

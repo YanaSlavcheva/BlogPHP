@@ -69,7 +69,7 @@ class PostsModel extends BaseModel {
 
         $statement = self::$db -> prepare(
             "INSERT INTO `posts` SET `title` = ?, `content` = ?");
-        $statement -> bind_param("ss", $title, $content);
+        $statement -> bind_param("ss", mysql_real_escape_string($title), mysql_real_escape_string($content));
         $statement -> execute();
 
         // get post_id (the last created post)
@@ -96,7 +96,7 @@ class PostsModel extends BaseModel {
             if ($curr_tag_id == null){
                 $statement = self::$db -> prepare(
                     "INSERT INTO `tags` SET `tag_content` = ?");
-                $statement -> bind_param("s", $curr_tag_content);
+                $statement -> bind_param("s", mysql_real_escape_string($curr_tag_content));
                 $statement -> execute();
 
                 // get last inserted tag id
@@ -110,7 +110,7 @@ class PostsModel extends BaseModel {
             // fill posts_tags table with info
             $statement = self::$db -> prepare(
                 "INSERT INTO `posts_tags` SET `post_id` = ?, `tag_id` = ?");
-            $statement -> bind_param("ss", $curr_post_id, $curr_tag_id);
+            $statement -> bind_param("ss", mysql_real_escape_string($curr_post_id), mysql_real_escape_string($curr_tag_id));
             $statement -> execute();
         }
         // end of foreach
@@ -125,7 +125,7 @@ class PostsModel extends BaseModel {
 
         $statement = self::$db -> prepare(
             "UPDATE posts SET title = ?, content = ? WHERE post_id = ?");
-        $statement -> bind_param("ssi", $title, $content, $id);
+        $statement -> bind_param("ssi", mysql_real_escape_string($title), mysql_real_escape_string($content), mysql_real_escape_string($id));
         $statement -> execute();
         return $statement -> errno == 0;
     }
@@ -172,7 +172,7 @@ class PostsModel extends BaseModel {
 
         $statement = self::$db -> prepare(
             "INSERT INTO `comments` SET `author` = ?, `content` = ?, `post_id` = ?");
-        $statement -> bind_param("ssi", $author, $content, $post_id);
+        $statement -> bind_param("ssi", mysql_real_escape_string($author), mysql_real_escape_string($content), mysql_real_escape_string($post_id));
         $statement -> execute();
 
         return $statement -> affected_rows > 0;
