@@ -73,4 +73,19 @@ class PostsController extends BaseController {
             $this -> redirect("posts");
         }
     }
+
+    public function comment($id) {
+        $this -> post = $this -> postsModel -> getById($id);
+        if ($this -> isPost()) {
+            $author = $_POST['author'];
+            $content = $_POST['content'];
+            $post_id = $_POST['post_id'];
+            if ($this -> postsModel -> comment($author, $content, $post_id)) {
+                $this -> addInfoMessage ("Comment created.");
+                $this -> redirect("posts");
+            } else {
+                $this -> addErrorMessage("Cannot add comment.");
+            }
+        }
+    }
 }

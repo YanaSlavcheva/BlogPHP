@@ -11,7 +11,6 @@ foreach ($this -> posts as $post) : ?>
             <h1><a href="/posts/post/<?=$post['post_id'] ?>"><?= htmlspecialchars($post['title']) ?></a></h1>
             <h2>Author: <?= htmlspecialchars($post['author']) ?></h2>
             <h2 class="glyphicon glyphicon-time"><span><?= htmlspecialchars($post['created_on']) ?></span></h2>
-            <h2 class="glyphicon glyphicon-comment"><span><a href="">Leave A Comment</a></span></h2>
         </header>
         <div class="col-xs-12 col-md-12 col-lg-12">
             <!--                        TODO: limit the content to 150 symbols-->

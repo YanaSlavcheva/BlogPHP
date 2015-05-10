@@ -1,5 +1,4 @@
 <article class="col-xs-12 col-md-12 col-lg-12 post-short">
-    <?= var_dump($this -> comment['comment_id'])?>
     <form method="post" action="/comments/delete/<?= $this -> comment['comment_id'] ?>">
         <div class="main-part">
             <div class="row">

@@ -46,67 +46,6 @@ class CommentsModel extends BaseModel {
         return $statement -> get_result()->fetch_assoc();
     }
 
-//    public function create($title, $content, $tags) {
-//
-//        // split tags
-//        $tags_array = explode(', ', $tags);
-//        $tags_array_no_ghosts = array_values( array_filter($tags_array));
-//
-//        if ($title == '' || $content == '' || count($tags_array_no_ghosts) <= 0) {
-//            return false;
-//        }
-//
-//        $statement = self::$db -> prepare(
-//            "INSERT INTO `posts` SET `title` = ?, `content` = ?");
-//        $statement -> bind_param("ss", $title, $content);
-//        $statement -> execute();
-//
-//        // get post_id (the last created post)
-//        $statement = self::$db -> prepare(
-//            "SELECT LAST_INSERT_ID()");
-//        $statement -> execute();
-//        $curr_post_id_array = $statement -> get_result() -> fetch_assoc();
-//        $curr_post_id = $curr_post_id_array["LAST_INSERT_ID()"];
-//
-//
-//        // TODO: tags must contain only letters, spaces and ,
-//        // TODO: validate so you cannot add only ,
-//
-//        // foreach tag check if exists in db / add to db / get the id
-//        foreach ($tags_array as $curr_tag_content) {
-//            $statement = self::$db -> prepare(
-//                "SELECT tag_id FROM tags WHERE tag_content = ?");
-//            $statement -> bind_param("s", $curr_tag_content);
-//            $statement -> execute();
-//            $curr_tag_id_array = $statement -> get_result()->fetch_assoc();
-//            $curr_tag_id = $curr_tag_id_array["tag_id"];
-//
-//            // check if tag exists
-//            if ($curr_tag_id == null){
-//                $statement = self::$db -> prepare(
-//                    "INSERT INTO `tags` SET `tag_content` = ?");
-//                $statement -> bind_param("s", $curr_tag_content);
-//                $statement -> execute();
-//
-//                // get last inserted tag id
-//                $statement = self::$db -> prepare(
-//                    "SELECT LAST_INSERT_ID()");
-//                $statement -> execute();
-//                $curr_tag_id_array = $statement -> get_result() -> fetch_assoc();
-//                $curr_tag_id = $curr_tag_id_array["LAST_INSERT_ID()"];
-//            }
-//
-//            // fill posts_tags table with info
-//            $statement = self::$db -> prepare(
-//                "INSERT INTO `posts_tags` SET `post_id` = ?, `tag_id` = ?");
-//            $statement -> bind_param("ss", $curr_post_id, $curr_tag_id);
-//            $statement -> execute();
-//        }
-//        // end of foreach
-//
-//        return $statement -> affected_rows > 0;
-//    }
-
     public function edit($id, $content) {
         if ($content == '') {
             return false;

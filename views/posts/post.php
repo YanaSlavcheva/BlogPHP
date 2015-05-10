@@ -3,7 +3,7 @@
         <h1><?= htmlspecialchars($this -> post['title']) ?></h1>
         <h2>Author: <?= htmlspecialchars($this -> post['author']) ?></h2>
         <h2 class="glyphicon glyphicon-time"><span><?= htmlspecialchars($this -> post['created_on']) ?></span></h2>
-        <h2 class="glyphicon glyphicon-comment"><span><a href="">Leave A Comment</a></span></h2>
+        <h2 class="glyphicon glyphicon-comment"><span><a href="../comment/<?=$this -> post['post_id'] ?>">Leave A Comment</a></span></h2>
     </header>
     <div class="col-xs-12 col-md-12 col-lg-12">
 

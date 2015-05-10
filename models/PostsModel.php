@@ -156,4 +156,17 @@ class PostsModel extends BaseModel {
         }
         return $statistic;
     }
+
+    public function comment($author, $content, $post_id) {
+        if ($author == '' || $content == '') {
+            return false;
+        }
+
+        $statement = self::$db -> prepare(
+            "INSERT INTO `comments` SET `author` = ?, `content` = ?, `post_id` = ?");
+        $statement -> bind_param("ssi", $author, $content, $post_id);
+        $statement -> execute();
+
+        return $statement -> affected_rows > 0;
+    }
 }
