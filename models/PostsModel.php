@@ -1,6 +1,7 @@
 <?php
 
 class PostsModel extends BaseModel {
+
     public function getAll() {
         $statement = self::$db -> query(
             "SELECT
@@ -45,7 +46,7 @@ class PostsModel extends BaseModel {
             GROUP BY p.post_id");
         $statement -> bind_param("i", $id);
         $statement -> execute();
-        return $statement -> get_result()->fetch_assoc();
+        return $statement -> get_result() -> fetch_assoc();
     }
 
     public function find($id) {
