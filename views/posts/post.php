@@ -27,11 +27,10 @@
     </div>
 
 <!--    TODO: Put comments here-->
-    <?php
-    var_dump($this -> comments);
-    foreach ($this -> comments as $comment) : ?>
-        <p>Author: <?= htmlspecialchars($comment['author']) ?></p>
-        <p>Content: <?= htmlspecialchars($comment['content']) ?></p>
-    <?php endforeach ?>
-
+    <?php     if ($this -> comments != null){?>
+        <?php foreach ($this -> comments as $comment) : ?>
+            <p>Author: <?= htmlspecialchars($comment['author']) ?></p>
+            <p>Content: <?= htmlspecialchars($comment['content']) ?></p>
+        <?php endforeach ?>
+    <?php } ?>
 </article>
