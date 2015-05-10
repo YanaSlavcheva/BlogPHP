@@ -9,6 +9,8 @@ class CommentsController extends BaseController {
     }
 
     public function edit($id) {
+        $this -> authorize();
+
         if ($this -> isPost()) {
             // Edit the comment in the database
             $content = $_POST['content'];
@@ -30,6 +32,8 @@ class CommentsController extends BaseController {
     }
 
     public function delete($id) {
+        $this -> authorize();
+
         if ($this -> isPost()) {
 
             // Delete the comment in the database

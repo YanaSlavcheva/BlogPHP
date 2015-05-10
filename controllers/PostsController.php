@@ -18,6 +18,8 @@ class PostsController extends BaseController {
     }
 
     public function create() {
+        $this -> authorize();
+
         if ($this -> isPost()) {
             $title = $_POST['title'];
             $content = $_POST['content'];
@@ -32,6 +34,8 @@ class PostsController extends BaseController {
     }
 
     public function edit($id) {
+        $this -> authorize();
+
         if ($this -> isPost()) {
             // Edit the post in the database
             $title = $_POST['title'];
@@ -53,6 +57,8 @@ class PostsController extends BaseController {
     }
 
     public function delete($id) {
+        $this -> authorize();
+
         if ($this -> isPost()) {
 
             // Delete the post in the database
